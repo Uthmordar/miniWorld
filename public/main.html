@@ -1,0 +1,38 @@
+<html>
+<head>
+	<title></title>
+	<style>
+		#world{
+			width: 100px;
+			height: 100px;
+			background-color: #000;
+		}
+	</style>
+</head>
+<body>
+	<h1>Main</h1>
+
+	<div id="messages">
+
+	</div>
+
+	<div id="world">
+
+	</div>
+
+	<script src="js/zepto.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		(function(){
+			'use strict';
+
+			var socket=io('ws://localhost:1337');
+
+			socket.on('newForm', function(data){
+				$('#messages').prepend('<p>'+data.data+'</p>');
+				$('#world').css('background-color', data.status);
+			});
+		})();
+	</script>
+</body>
+</html>

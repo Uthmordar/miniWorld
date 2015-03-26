@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Index</h1>
+
+	<form action="/postMessage" method="POST">
+		<input type="number" min=0 max=100 name="success" placeholder="Process success"/>
+		<input type="submit" value="Send"/>
+	</form>
+
+	<script src="js/zepto.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		(function(){
+			'use strict';
+
+			var socket=io('ws://localhost:1337');
+
+			socket.emit('user', 'toto');
+
+			$('form').on('submit', function(e){
+				e.preventDefault();
+				socket.emit('message', $(this).find('input[name="success"]').val());
+				return false;
+			});
+		})();
+	</script>
+</body>
+</html>

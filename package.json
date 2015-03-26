@@ -1,0 +1,16 @@
+{
+  "name": "hackaton",
+  "version": "0.0.1",
+  "description": "webgame prototype for GEN hackaton",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "climat",
+    "cop21",
+    "gen"
+  ],
+  "author": "Uthmordar <tanguyrygodin@gmail.com>",
+  "license": "MIT"
+}
