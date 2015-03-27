@@ -1,22 +1,4 @@
-<html>
-<head>
-	<title></title>
-	<style>
-		#world{
-			width: 1080px;
-			height: 740px;
-		}
-	</style>
-</head>
-<body>
-	<h1>Main</h1>
-
-	<div id="messages">
-
-	</div>
-
-	<div id="world">
-		<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 43363)  -->
 <svg version="1.2" baseProfile="tiny" id="svg2" xmlns:svg="http://www.w3.org/2000/svg"
  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="950px" height="620px"
@@ -361,21 +343,3 @@
 <path id="thrace" d="M523.02,209.7l-0.16,3.55l3.1-0.95l1.42-0.95l-0.42-1.54l-1.47-1.17L523.02,209.7L523.02,209.7z"/>
 <path id="crete" d="M516.76,230.59l1.63,0.05l0.68,1.01h2.37l1.58-0.58l0.53,0.64l-1.05,1.38l-4.63,0.16l-0.84-1.11l-0.89-0.53L516.76,230.59L516.76,230.59z"/>
 </svg>
-	</div>
-
-	<script type="text/javascript" src="js/zepto.min.js"></script>
-	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
-	<script>
-		(function(){
-			'use strict';
-
-			var socket=io('ws://localhost:1337');
-
-			socket.on('newForm', function(data){
-				$('#messages').prepend('<p>'+data.data+'</p>');
-				$('#world').css('background-color', data.status);
-			});
-		})();
-	</script>
-</body>
-</html>
