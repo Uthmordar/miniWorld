@@ -39,8 +39,8 @@ var x={
 	world:{v:0, nb:0}
 };
 io.on('connection', function(socket){
-	socket.on('launch', function(data){
-		io.sockets.emit('country', country[Math.floor(Math.random()*country.length)]);
+	socket.on('launch', function(data, fn){
+		fn(country[Math.floor(Math.random()*country.length)]);
 	});
 
 	socket.on('message', function(data){
@@ -49,8 +49,11 @@ io.on('connection', function(socket){
 		countryStatus=setStatus(x[data.country].v/x[data.country].nb);
 		io.sockets.emit('newForm', {message:"new status for "+data.country+" : " +countryStatus, about: "There is some new infos/datas", statusWorld: setStatus(x.world.v/x.world.nb), country: {selector:data.country, status: countryStatus}});
 	});
-});
 
+	socket.on('getStat', function(data, fn){
+		fn(x[data]);
+	});
+});
 
 
 function setStatus(x){

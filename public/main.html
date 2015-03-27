@@ -59,12 +59,21 @@
 		}
 
 		.status_msg>.close_box,
-		.info_msg>.close_box{
+		.info_msg>.close_box,
+		article.info_supp>.info_close{
 			position: absolute;
 			font-weight: bold;
 			top: 0.1rem;
 			right: 0.3rem;
 			cursor: pointer;
+		}
+
+		#france{
+			cursor: pointer;
+		}
+
+		article.info_supp{
+			position: absolute;
 		}
 	</style>
 </head>
@@ -80,8 +89,9 @@
     <div id="layer">
 	</div>
 
-	<script type="text/javascript" src="js/zepto.min.js"></script>
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="js/snap.svg-min.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript" src="js/app.main.js"></script>
 	<script>
