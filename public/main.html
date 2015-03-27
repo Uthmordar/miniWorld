@@ -12,69 +12,23 @@
 			background: #000;
 		}
 
-		#world{
-			width: 100%;
-			height: 100vh;
-			background: #FFF;
-		}
-
-		#svg2{
-			transition: all 1s ease-out 0s;
-		}
+		#world{width:100%;height:100vh;background:#FFF;}
+		#svg2{transition:all 1s ease-out 0s;}
 
 
-		#infos{
-			position: fixed;
-			right: 2rem;
-			top: 5rem;
-			max-height: 95vh;
-		}
+		#infos{position:fixed;right:2rem;top:5rem;max-height:95vh;}
+		#messages{position:fixed;left:2rem;top:5rem;max-height:95vh;}
 
-		#messages{
-			position: fixed;
-			left: 2rem;
-			top: 5rem;
-			max-height: 95vh;
-		}
-
-		.status_msg, .info_msg{
-			position: relative;
-			transition: all 1s ease-out 0s;
-		}
-
-		.status_msg:nth-child(1), .info_msg:nth-child(1){
-			max-height: 0;
-			max-width: 0;
-			opacity: 0;
-			padding: 0;
-			box-shadow: 3px 3px 1px 1px;
-		}
-
+		.status_msg, .info_msg{position: relative;transition:all 1s ease-out 0s;}
+		.status_msg:nth-child(1), .info_msg:nth-child(1){max-height:0;max-width:0;opacity:0;padding:0;box-shadow:3px 3px 1px 1px;}
 		.status_msg:nth-child(1).active,
-		.info_msg:nth-child(1).active{
-			max-height: none;
-			max-width: none;
-			opacity: 1;
-			padding: 1.5rem;
-		}
-
+		.info_msg:nth-child(1).active{max-height:none;max-width:none;opacity:1;padding:1.5rem;}
 		.status_msg>.close_box,
 		.info_msg>.close_box,
-		article.info_supp>.info_close{
-			position: absolute;
-			font-weight: bold;
-			top: 0.1rem;
-			right: 0.3rem;
-			cursor: pointer;
-		}
+		article.info_supp>.info_close{position:absolute;font-weight:bold;top:0.1rem;right:0.3rem;cursor:pointer;}
 
-		path.country_info{
-			cursor: pointer;
-		}
-
-		article.info_supp{
-			position: absolute;
-		}
+		path.country_info{cursor:pointer;}
+		article.info_supp{position:absolute;}
 	</style>
 </head>
 <body>
