@@ -38,7 +38,7 @@
 			  </div>\n\
 			  <div class="modal-body">\n\
 			    <p>You are now a decision-maker. You are the one who makes the choices. You have influence.\n\
-				You don’t just represent <strong>'+country+'</strong>. You are <strong>'+country+'</strong>.<br/>\n\
+				You don’t just represent <strong>'+self.ucfirst(country)+'</strong>. You are <strong>'+self.ucfirst(country)+'</strong>.<br/>\n\
 				You are part of a great discussion. Climate change is affecting both your country and the world. Your people want solutions.\n\
 				We’ll lead you through the process of decisions on specific topics, with the aim of reducing greenhouse gas emissions and slowing down global warming. Consider the consequences of your choices - for tomorrow and the next 100 years.</p>\n\
 			  </div>\n\
@@ -48,6 +48,9 @@
 			</div>';
 			$(first).appendTo('#wrapper').modal('toggle');
 			$start=$('#start');
+		},
+		ucfirst: function(string){
+			return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 		}
 	}
 

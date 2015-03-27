@@ -53,13 +53,16 @@
 			percent=(data.nb!==0)? data.v/data.nb : 0;
 			modal="<article class='info_supp alert alert-info'>\n\
 			<span class='info_close'>X</span>\n\
-			<h3>"+$this.attr('id').toUpperCase()+" informations</h3>\n\
+			<h3>"+self.ucfirst($this.attr('id').toUpperCase())+" informations</h3>\n\
 			<p>Statistics:<br/>\n\
 			%: "+percent+"<br/>\n\
 			player(s): "+data.nb+"<br/>\n\
 			</p>\n\
 			</article>";
 			$(modal).appendTo('body').css({'top': $this.offset().top+'px', 'left': $this.offset().left+'px'});
+		},
+		ucfirst: function(string){
+			return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 		}
 	}
 
