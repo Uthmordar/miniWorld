@@ -12,6 +12,7 @@ var app=express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: true}));
 
+// routing
 app.get('/app', function(req, res){
 	res.type('.html');
 	res.sendFile(path.join(__dirname, 'public'+'/index.html'));
@@ -22,22 +23,24 @@ app.get('/main', function(req, res){
 	res.sendFile(path.join(__dirname, 'public'+'/main.html'));
 });
 
+// server launching
 var server=http.createServer(app);
 
 server.listen(1337);
 
 var io=require('socket.io')(server);
 
+// data
 var country=['france', 'germany', 'brazil', 'russia', 'usa', 'china'];
 var x={
-	france:{v:0, nb:0},
-	brazil:{v:0, nb:0},
-	germany:{v:0, nb:0},
-	russia:{v:0, nb:0},
-	usa:{v:0, nb:0},
-	china:{v:0, nb:0},
 	world:{v:0, nb:0}
 };
+
+country.forEach(function(c){
+	x[c]={v:0, nb: 0};
+});
+
+// socket events
 io.on('connection', function(socket){
 	socket.on('launch', function(data, fn){
 		fn(country[Math.floor(Math.random()*country.length)]);
@@ -55,7 +58,7 @@ io.on('connection', function(socket){
 	});
 });
 
-
+// helper
 function setStatus(x){
 	if(x>=90){
 		return 'excellent';
