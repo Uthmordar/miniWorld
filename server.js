@@ -1,5 +1,6 @@
 'use strict';
 
+var countryStatus;
 var http       =require('http');
 var path       =require('path');
 var express    =require('express');
@@ -27,31 +28,43 @@ server.listen(1337);
 
 var io=require('socket.io')(server);
 
+var country=['france', 'germany', 'brazil', 'russia', 'usa', 'china'];
 var x={
 	france:{v:0, nb:0},
-	allemagne:{v:0, nb:0},
+	brazil:{v:0, nb:0},
+	germany:{v:0, nb:0},
+	russia:{v:0, nb:0},
+	usa:{v:0, nb:0},
+	china:{v:0, nb:0},
 	world:{v:0, nb:0}
 };
 io.on('connection', function(socket){
+	socket.on('launch', function(data){
+		io.sockets.emit('country', country[Math.floor(Math.random()*country.length)]);
+	});
+
 	socket.on('message', function(data){
-		x.world.nb=x.world.nb+1;
-		x[data.country].nb=x[data.country].nb+1;
-		x.world.v=x.world.v+parseInt(data.v);
-		x[data.country].v=x[data.country].v+parseInt(data.v);
-		io.sockets.emit('newForm', {data:'new user complete form with '+data, statusWorld: setMesureColor(x.world.v/x.world.nb)});
+		x.world={v: x.world.v+parseInt(data.v), nb: x.world.nb+1};
+		x[data.country]={v: x[data.country].v+parseInt(data.v), nb: x[data.country].nb+1};
+		countryStatus=setStatus(x[data.country].v/x[data.country].nb);
+		io.sockets.emit('newForm', {message:"new status for "+data.country+" : " +countryStatus, about: "There is some new infos/datas", statusWorld: setStatus(x.world.v/x.world.nb), country: {selector:data.country, status: countryStatus}});
 	});
 });
 
 
 
-function setMesureColor(x){
-	if(x>=80){
-		return '#0F0';
+function setStatus(x){
+	if(x>=90){
+		return 'excellent';
+	}else if(x>=80){
+		return 'good';
 	}else if(x>=60){
-		return '#34F912';
+		return 'average';
 	}else if(x>=40){
-		return 'orange';
+		return 'bad';
+	}else if(x>=20){
+		return 'badbad';
 	}else{
-		return 'crimson';
+		return 'critical';
 	}
 }

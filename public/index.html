@@ -1,30 +1,46 @@
 <html>
 <head>
-	<title></title>
+	<title>Welcome</title>
+	<link rel='stylesheet' href="css/reset.css" type='text/css' media='all'/>
+	<link rel='stylesheet' href="bower_components/bootstrap/dist/css/bootstrap.min.css" type='text/css' media='all'/>
+	<style>
+		#wrapper{
+			width: 100%;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		input[name="success"]{
+			height: 30px;
+		}
+
+		strong{
+			font-size: 1.4rem;
+		}
+
+	</style>
 </head>
 <body>
-	<h1>Index</h1>
+	<section id="wrapper">
+		<form action="/postMessage" method="POST" class="form-inline">
+			<p class="country"></p>
+			<input type="number" min=0 max=100 name="success" class="input-medium" placeholder="Process success"/>
+			<input type="submit" value="Send" class="btn btn-primary"/>
+		</form>
+	</section>
 
-	<form action="/postMessage" method="POST">
-		<input type="text" name="country" placeholder="Country name"/>
-		<input type="number" min=0 max=100 name="success" placeholder="Process success"/>
-		<input type="submit" value="Send"/>
-	</form>
-
-	<script src="js/zepto.min.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/app.index.js"></script>
 	<script>
 		(function(){
 			'use strict';
 
 			var socket=io('ws://localhost:1337');
-
-			
-			$('form').on('submit', function(e){
-				e.preventDefault();
-				socket.emit('message', {v:$(this).find('input[name="success"]').val(), country: $(this).find('input[name="country"]').val()});
-				return false;
-			});
+			window.app.initialize(socket);
 		})();
 	</script>
 </body>
